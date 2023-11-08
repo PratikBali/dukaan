@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import 'package:flutter/foundation.dart';
 
 class ItemData extends  ChangeNotifier {
@@ -11,12 +9,17 @@ class ItemData extends  ChangeNotifier {
     Item(name: 'accessories', quantity: 3, src: 'images/apple-iphone-15-pro-max-case.jpg'),
   ];
 
-  int get tasksCount {
+  int get itemsCount {
     return items.length;
   }
 
-  setTask(itemName, itemQuantity, imgSrc) {
-    items.add(Item(name: itemName, quantity: itemQuantity, src: imgSrc));
+  addItemInStock(itemName, itemQuantity, imgSrc) {
+    var existingIndex = items.indexWhere((element) => element.name == itemName);
+    if(existingIndex == -1) {
+      items.add(Item(name: itemName, quantity: itemQuantity, src: imgSrc));
+    } else {
+      increaseQuantity(existingIndex);
+    }
     notifyListeners();
   }
 
@@ -27,6 +30,11 @@ class ItemData extends  ChangeNotifier {
 
   void removeItem(index) {
     items.removeAt(index);
+    notifyListeners();
+  }
+
+  void increaseQuantity(index) {
+    items[index].quantity = items[index].quantity + 1;
     notifyListeners();
   }
 

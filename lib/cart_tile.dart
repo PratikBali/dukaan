@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ItemTile extends StatelessWidget {
-  final String itemTitle;
-  int itemQuantity;
-  final String imgSrc;
-  VoidCallback addToCartCallback;
+class CartTile extends StatelessWidget {
+  late final String itemTitle;
+  late int itemQuantity;
+  late final String imgSrc;
+  late VoidCallback removeFromCartCallback;
 
-  ItemTile(
+  CartTile(
       {required this.itemTitle,
-      required this.itemQuantity,
-      required this.imgSrc,
-      required this.addToCartCallback});
+        required this.itemQuantity,
+        required this.imgSrc,
+        required this.removeFromCartCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -48,12 +48,12 @@ class ItemTile extends StatelessWidget {
                       elevation: 5.0,
                       borderRadius: BorderRadius.circular(30.0),
                       child: ElevatedButton(
-                        onPressed: itemQuantity > 0 ? addToCartCallback : null,
-                        child: Icon(Icons.add_shopping_cart),
+                        onPressed: itemQuantity > 0 ? removeFromCartCallback : null,
+                        child: Icon(Icons.delete_forever),
                         style: ElevatedButton.styleFrom(
                           // splashFactory: NoSplash.splashFactory,
-                          backgroundColor: itemQuantity > 0 ? Colors.lightBlueAccent : Colors.grey,
-                          minimumSize: Size(20, 50)
+                            backgroundColor: itemQuantity > 0 ? Colors.lightBlueAccent : Colors.grey,
+                            minimumSize: Size(20, 50)
                         ),
                       ),
                     )

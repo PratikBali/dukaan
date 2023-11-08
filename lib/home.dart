@@ -4,7 +4,7 @@ import 'item_list.dart';
 
 class Home extends StatefulWidget {
   static const String id = 'home_screen';
-  final String title = 'dukaan';
+  final String title = 'Dukaan Home';
   @override
   State<Home> createState() => _HomeState();
 }
