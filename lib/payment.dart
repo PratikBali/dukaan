@@ -25,7 +25,7 @@ class _PaymentState extends State<Payment> {
   Widget build(BuildContext context) {
     return Consumer<CartData>(
       builder: (context, cartData, Widget? child) {
-        num cartTotal = widget.getCartTotalPrice(cartData.items);
+        int cartTotal = widget.getCartTotalPrice(cartData.items);
         return  Scaffold(
           appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.primary,
