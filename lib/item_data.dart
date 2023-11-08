@@ -3,20 +3,20 @@ import 'package:flutter/foundation.dart';
 class ItemData extends  ChangeNotifier {
 
   late List<Item> items = [
-    Item(name: 'mobile', quantity: 6, src: 'images/apple-iphone-15-pro-max.jpg'),
-    Item(name: 'plan', quantity: 5, src: 'images/singtel-ultra-1gbps.jpg'),
-    Item(name: 'insurance', quantity: 4, src: 'images/device-protection.jpg'),
-    Item(name: 'accessories', quantity: 3, src: 'images/apple-iphone-15-pro-max-case.jpg'),
+    Item(name: 'mobile', price: 100, quantity: 6, src: 'images/apple-iphone-15-pro-max.jpg'),
+    Item(name: 'plan', price: 60, quantity: 5, src: 'images/singtel-ultra-1gbps.jpg'),
+    Item(name: 'insurance', price: 30, quantity: 4, src: 'images/device-protection.jpg'),
+    Item(name: 'accessories', price: 10, quantity: 3, src: 'images/apple-iphone-15-pro-max-case.jpg'),
   ];
 
   int get itemsCount {
     return items.length;
   }
 
-  addItemInStock(itemName, itemQuantity, imgSrc) {
+  addItemInStock(itemName, itemPrice, itemQuantity, imgSrc) {
     var existingIndex = items.indexWhere((element) => element.name == itemName);
     if(existingIndex == -1) {
-      items.add(Item(name: itemName, quantity: itemQuantity, src: imgSrc));
+      items.add(Item(name: itemName, price: itemPrice, quantity: itemQuantity, src: imgSrc));
     } else {
       increaseQuantity(existingIndex);
     }
@@ -24,7 +24,6 @@ class ItemData extends  ChangeNotifier {
   }
 
   void updateItem(Item task) {
-    task.toggleOOS();
     notifyListeners();
   }
 
@@ -50,12 +49,10 @@ class Item {
   final String name;
   final String src;
   int quantity;
-  bool isOOS;
+  int price;
 
-  Item({required this.quantity, required this.name, this.isOOS = false, required this.src});
-
-  void toggleOOS() {
-    isOOS = !isOOS;
-  }
-
+  Item({required this.quantity,
+    required this.name,
+    required this.price,
+    required this.src});
 }

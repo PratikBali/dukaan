@@ -14,10 +14,11 @@ class ItemList extends StatelessWidget {
            final item = itemData.items[index];
            return ItemTile(
              itemTitle: item.name,
+             itemPrice: item.price,
              itemQuantity: item.quantity,
              imgSrc: item.src,
              addToCartCallback: () {
-               cartData.addToCart(item.name, 1, item.src);
+               cartData.addToCart(item.name, item.price, 1, item.src);
                itemData.decreaseQuantity(index);
              }
            );

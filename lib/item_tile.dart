@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ItemTile extends StatelessWidget {
   final String itemTitle;
   int itemQuantity;
+  int itemPrice;
   final String imgSrc;
   VoidCallback addToCartCallback;
 
@@ -10,6 +11,7 @@ class ItemTile extends StatelessWidget {
       {required this.itemTitle,
       required this.itemQuantity,
       required this.imgSrc,
+      required this.itemPrice,
       required this.addToCartCallback});
 
   @override
@@ -33,14 +35,23 @@ class ItemTile extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
+                    Text(
+                      'Price: ₹$itemPrice',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        // letterSpacing: 2.0,
+                        // wordSpacing: 3.0,
+                      ),
+                    ),
+                    SizedBox(width: 20.0),
                     Text(
                       'Quantity: $itemQuantity',
                       style: TextStyle(
                         fontSize: 18.0,
-                        letterSpacing: 2.0,
-                        wordSpacing: 3.0,
+                        // letterSpacing: 2.0,
+                        // wordSpacing: 3.0,
                       ),
                     ),
                     SizedBox(width: 20.0),

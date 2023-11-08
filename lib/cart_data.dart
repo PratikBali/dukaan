@@ -8,10 +8,10 @@ class CartData extends ChangeNotifier {
     return items.length;
   }
 
-  addToCart(itemName, itemQuantity, imgSrc) {
+  addToCart(itemName, itemPrice, itemQuantity, imgSrc) {
     var existingIndex = items.indexWhere((element) => element.name == itemName);
     if(existingIndex == -1) {
-      items.add(Item(name: itemName, quantity: itemQuantity, src: imgSrc));
+      items.add(Item(name: itemName, price: itemPrice, quantity: itemQuantity, src: imgSrc));
     } else {
       increaseQuantity(existingIndex);
     }
@@ -42,5 +42,6 @@ class Item {
   final String name;
   final String src;
   int quantity;
-  Item({required this.quantity, required this.name, required this.src});
+  int price;
+  Item({required this.quantity, required this.name, required this.src, required this.price});
 }
